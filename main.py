@@ -100,7 +100,5 @@ def main():
         delete_vm(conn, srv.id)
 
 
-# This is the entry point of the program
-# When the script is run directly (not imported), it executes 'main()'
 if __name__ == "__main__":
     main()
