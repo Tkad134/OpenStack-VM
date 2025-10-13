@@ -1,12 +1,12 @@
-# Import the 'time' module to allow us to pause execution (e.g., using sleep)
+# Import the time module to allow us to pause execution 
 import time
 
-# Import a custom function 'create_connection' from our 'utils.connection' module
-# This function likely creates and returns an OpenStack connection object
+# Import a custom function create_connection from utils.connection module
+# creates and returns an OpenStack connection object
 from utils.connection import create_connection
 
-# Import a custom function 'choose_host_hint' from the 'scheduler' module
-# This is probably used to pick a host or placement hint for VM scheduling
+# Import a custom function choose_host_hint from the scheduler module
+# pick a host or placement hint for VM scheduling
 from scheduler import choose_host_hint
 
 
@@ -16,15 +16,15 @@ def create_vm(conn, name, image, flavor, network, scheduler_hints=None, az=None)
     server_attrs = {
         'name': name,                     # Name of the VM
         'image_id': image,                # ID of the image to boot the VM from
-        'flavor_id': flavor,              # ID of the flavor (hardware size) to use
-        'networks': [{"uuid": network}],  # Network UUID to attach the VM to
+        'flavor_id': flavor,              # ID of the flavor to use
+        'networks': [{"uuid": network}],  # Network ID to attach the VM to
     }
 
-    # If a scheduler hint is provided, include it in the server attributes
+    # If a scheduler hint is provided include it in the server attributes
     if scheduler_hints:
         server_attrs['scheduler_hints'] = scheduler_hints
 
-    # If an availability zone is provided, include it in the server attributes
+    # If an availability zone is provided include it in the server attributes
     if az:
         server_attrs['availability_zone'] = az
 
@@ -75,18 +75,18 @@ def main():
     NETWORK = "eef99664-e954-49e9-a64f-168914fccf2c" # The network UUID
     AVAIL_ZONE = "nova"                              # Availability zone to deploy in
 
-    # Launch multiple VMs (in this case, 2 VMs) with scheduling logic
+    # Launch multiple VMs with scheduling logic
     for i in range(2):  # Loop runs twice: i = 0 and i = 1
         # Construct a VM name with an incrementing number
         name = f"vm-auto-{i+1}"
 
-        # Get a scheduling hint from the scheduler module (e.g., specific host)
+        # Get a scheduling hint from the scheduler module 
         hint = choose_host_hint()
 
         # Create the VM using the provided parameters and hint
         vm = create_vm(conn, name, IMAGE, FLAVOR, NETWORK, scheduler_hints=hint, az=AVAIL_ZONE)
 
-    # After creating the VMs, list all current VMs to verify
+    # After creating the VMs list all current VMs to verify
     list_vms(conn)
 
     # Wait for 30 seconds before cleaning up (gives time to observe VMs)
