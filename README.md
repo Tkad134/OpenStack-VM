@@ -1,8 +1,6 @@
 OpenStack VM Automation Script
 
-A simple Python project that demonstrates how to **programmatically create and delete virtual machines** on an OpenStack cloud using the official openstack sdk
-
----
+A simple Python project that demonstrates how to programmatically create and delete virtual machines on an OpenStack cloud using the official openstack sdk
 
 Features:
 
@@ -12,15 +10,10 @@ Features:
 - Wait for VMs to become active
 - List and delete VMs programmatically
 
----
-
 Tech Used:
 
 - Python 3.12
 - OpenStack SDK
 - DevStack (local OpenStack environment)
-
----
-
 
 
