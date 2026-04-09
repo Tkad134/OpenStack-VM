@@ -38,7 +38,7 @@ def create_vm(conn, name, image, flavor, network, scheduler_hints=None, az=None)
     server = conn.compute.wait_for_server(server)
 
     # Print a success message once the VM is active
-    print(f"✅ VM {name} is ACTIVE (ID: {server.id})")
+    print(f"VM {name} is ACTIVE (ID: {server.id})")
 
     # Return the server object (useful for further actions)
     return server
@@ -61,7 +61,7 @@ def delete_vm(conn, server_id):
     conn.compute.delete_server(server_id)
 
     # Print a message confirming deletion
-    print(f"🗑️ Deleted VM {server_id}")
+    print(f"Deleted VM {server_id}")
 
 
 # Define the main function where everything is orchestrated
